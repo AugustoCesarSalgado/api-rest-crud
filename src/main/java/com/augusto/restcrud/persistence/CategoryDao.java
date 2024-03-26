@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.augusto.restcrud.models.Category;
 
-public interface ICategoryDao {
+public interface CategoryDao {
     
     List<Category> findAll();
 

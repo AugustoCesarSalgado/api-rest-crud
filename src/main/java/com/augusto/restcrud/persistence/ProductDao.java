@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import com.augusto.restcrud.models.Product;
 
-public interface IProductDao {
+public interface ProductDao {
 
     List<Product> findAll();
 

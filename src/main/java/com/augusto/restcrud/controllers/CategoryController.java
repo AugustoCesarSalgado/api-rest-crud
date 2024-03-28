@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.augusto.restcrud.controllers.dto.CategoryDto;
 import com.augusto.restcrud.models.Category;
 import com.augusto.restcrud.service.ICategoryService;
 
@@ -24,7 +25,17 @@ public class CategoryController {
         Optional<Category> categoryOptional = categoryService.findById(id);
 
         if (categoryOptional.isPresent()) {
+            Category category = categoryOptional.get();
+
+            CategoryDto categoryDto = CategoryDto.builder()
+                .id(category.getId())
+                .name(category.getName())
+                .productList(category.getProductList())
+                .build();
             
+            return ResponseEntity.ok(categoryDto);
         }
+
+        return ResponseEntity.notFound().build();
     }
 }

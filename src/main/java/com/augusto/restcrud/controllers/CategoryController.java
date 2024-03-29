@@ -1,5 +1,6 @@
 package com.augusto.restcrud.controllers;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,18 @@ public class CategoryController {
         }
 
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/findAll")
+    public ResponseEntity<?> findAll() {
+        List<CategoryDto> categoryList = categoryService.findAll()
+            .stream()
+            .map(category -> CategoryDto.builder()
+                    .id(category.getId())
+                    .name(category.getName())
+                    .productList(category.getProductList())
+                    .build())
+            .toList();
+        return ResponseEntity.ok(categoryList);
     }
 }

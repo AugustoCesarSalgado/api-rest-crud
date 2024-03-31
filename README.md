@@ -2,6 +2,10 @@
 
 API-REST-CRUD is a RESTful API that provides endpoints for managing categories and products. It supports CRUD (Create, Read, Update, Delete) operations on both categories and products.
 
+### Future Improvements
+- Implement user authentication and authorization to secure sensitive endpoints.
+- Add pagination and filters to allow clients to retrieve data more efficiently.
+
 ## Technologies Used
 
 - Java

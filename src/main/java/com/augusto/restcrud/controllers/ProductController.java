@@ -7,6 +7,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -78,7 +79,7 @@ public class ProductController {
     }
 
     @PutMapping("/update/{id}")
-    public ResponseEntity<?> update(@PathVariable Long id, @RequestBody ProductDto productDto) {
+    public ResponseEntity<?> updateProduct(@PathVariable Long id, @RequestBody ProductDto productDto) {
         Optional<Product> productOptional = productService.findById(id);
 
         if (productOptional.isPresent()) {
@@ -92,5 +93,15 @@ public class ProductController {
         }
 
         return ResponseEntity.notFound().build();
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<?> deleteById(@PathVariable Long id) {
+        if (id != null) {
+            productService.deleteById(id);
+            return ResponseEntity.ok("Product deleted");
+        }
+
+        return ResponseEntity.badRequest().build();
     }
 }
